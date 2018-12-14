@@ -131,7 +131,7 @@ def get_bow_vector(sent):
             vector[index] += 1
     return vector
 #######################################################################################################
-# feature 6 : Syntatic features
+# feature 6 : Syntactic features
 
 
 def syntatic_features(sent):
@@ -148,10 +148,10 @@ def feature_extract(sent1, sent2):
     :param sent2: sent of question2 as a string
     :return: dictionary-keys are names of features, values are features
     """
-    dict={}
-    dict["remove_stopwords"]=remove_stopwords(sent1)
-    dict["character_length_ratio"]=character_length_ratio(sent1, sent2)
-    dict["syntatic_features"]=syntatic_features(sent1)
-    dict["get_number_of_same_words"]=get_number_of_same_words(sent1, sent2)
+    dict = {}
+    dict["remove_stopwords"] = remove_stopwords(sent1)
+    dict["character_length_ratio"] = character_length_ratio(sent1, sent2)
+    dict["syntatic_features"] = syntatic_features(sent1)
+    dict["get_number_of_same_words"] = get_number_of_same_words(sent1, sent2)
     return dict
 
