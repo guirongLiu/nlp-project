@@ -2,9 +2,9 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.corpus import wordnet as wn
 import pandas as pd
-from IPython import embed
+
 # data set up
-df = pd.read_csv('cleaned_data.csv', encoding="ISO-8859-1")
+df = pd.read_csv('train.csv', encoding="ISO-8859-1")
 
 #######################################################################################################
 # feature 1: questions without stopwords:
@@ -21,7 +21,7 @@ def character_length_ratio(sent1,sent2):
     params: two question sentences sent1 and sent2
     return: ratio
     """
-    return len(sent1)/max(1, len(sent2))
+    return sent1/max(1, sent2)
 #######################################################################################################
 # feature 3: number of same words or synonyms
 """
@@ -87,7 +87,6 @@ def get_dictionary_set():
     words_set = set()
     for q in questions_set:
         tokens = nltk.word_tokenize(q)
-
         for token in tokens:
             words_set.add(token)
     return list(words_set)
@@ -103,7 +102,7 @@ def get_sow_vector(sent):
     vector = [0]*len(dict_list)
     for token in tokens:
         if token in dict_list:
-            index = dict_list.index(token)
+            index = dict_list.index[token]
             if vector[index] == 0:
                 vector[index] = 1
     return vector
@@ -112,6 +111,7 @@ def get_sow_vector(sent):
 
 #######################################################################################################
 # BOW model
+
 
 def get_bow_vector(sent):
     """
@@ -128,7 +128,7 @@ def get_bow_vector(sent):
     vector = [0]*len(dict_list)
     for token in tokens:
         if token in dict_list:
-            index = dict_list.index(token)
+            index = dict_list.index[token]
             vector[index] += 1
     return vector
 #######################################################################################################
@@ -154,5 +154,6 @@ def feature_extract(sent1, sent2):
     dict["character_length_ratio"] = character_length_ratio(sent1, sent2)
     dict["syntatic_features"] = syntatic_features(sent1)
     dict["get_number_of_same_words"] = get_number_of_same_words(sent1, sent2)
+    dict["bow vector"] = get_bow_vector(sent1)
+    dict["sow vector"] = get_sow_vector(sent1)
     return dict
-
