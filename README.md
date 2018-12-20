@@ -1,10 +1,12 @@
-#version1
+# Sklearn Model
+
 Data after cleaning is stored in cleaned_data.csv
 After feature engineering, the new dataset used for training is stored as new_data.csv
 To implement training, simply run train.py, it will give the prediction accuracy.
 
 
-#neural network method
+# Neural Network Method
+
 Everything need to run this method is in the folder neural_network.
 How to run:
 
